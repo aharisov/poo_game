@@ -6,7 +6,6 @@
     <title>The Game</title>
 </head>
 <body>
-    <h1>The Game</h1>
     <?php
         ini_set('display_errors', '1');
         ini_set('display_startup_errors', '1');
@@ -26,6 +25,8 @@
             new Humain("Yanick")
         ];
 
+        echo "<h2>Le duel commence</h2>";
+
         // make attacks while all duelists are alive
         while ($domeDuTonnere[0]->__get("pv") > 0 && $domeDuTonnere[1]->__get("pv") > 0) {
             
@@ -42,6 +43,8 @@
         //-------------- duel end ----------------------------
 
         //------------- game engine start ---------------------------
+        echo "<h2>La bataille commence</h2>";
+
         $game = new GameEngine();
         $game->addCombattant(new Humain("Loic")); 
         $game->addCombattant(new Orc("Yannick"));

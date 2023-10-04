@@ -6,7 +6,7 @@ class Orc extends Personnage {
         
         $this->force = 115;
         $this->pv = 150;
-        $this->endurance = 50;
-        $this->nom = "Orc";
+        $this->endurance = 100;
+        $this->race = "Orc";
     }
 }

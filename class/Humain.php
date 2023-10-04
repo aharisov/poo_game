@@ -7,6 +7,6 @@ class Humain extends Personnage {
         $this->force = 105;
         $this->pv = 130;
         $this->endurance = 45;
-        $this->nom = "Humain";
+        $this->race = "Humain";
     }
 }

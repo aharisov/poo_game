@@ -21,16 +21,16 @@ abstract class Personnage {
         $this->$prop = $val;
     }
 
-    public function attaquer($cible) {
+    public function attaquer($cible, $isDuel) {
         //var_dump($this);
         //var_dump($cible);
 
         // transform difference between endurance and force to 0 if it's sub 0
-        $defenceValue = ($this->force - $cible->__get("endurance")) < 0 ? 0 : $this->force - $cible->__get("endurance");
-        // get new value of pv
-        $newPv = $cible->__get("pv") - $defenceValue;
+        // calculate new value of pv
+        $newPvValue = ($this->force - $cible->__get("endurance")) < 0 ? 0 : $this->force - $cible->__get("endurance");
+        
         // set new value of pv
-        $cible->__set("pv", $newPv);
+        $cible->__set("pv", $cible->__get("pv") - $newPvValue);
         $html = "";
 
         // only alive personage can attack
@@ -43,8 +43,12 @@ abstract class Personnage {
                 // show number of left pv if victim is alive
                 $html .= "<h4>Il reste " . $cible->__get("pv") . " points au $cible->race $cible->nom.</h4>";
             } else {
-                // show message that victim is dead
-                $html .= "<h3 style='color: red;'>$cible->race $cible->nom est mort. Fin du duel.</h3>";
+                // show message that victim is dead for duel
+                if ($isDuel) {
+                    $html .= "<h3 style='color: red;'>$cible->race $cible->nom est mort. Fin du duel.</h3>";
+                } else {
+                    $html .= "<h3 style='color: red;'>$cible->race $cible->nom est mort.</h3>";
+                }
             }
             
         } 

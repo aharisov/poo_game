@@ -18,7 +18,7 @@
         require("class/Elfe.php");
         require("class/GameEngine.php");
 
-        //------------------------------------------
+        //------------- duel start ---------------------------
         
         // array for stocking duelist
         $domeDuTonnere = [
@@ -34,13 +34,28 @@
                 
                 $cible = $index == 0 ? 1 : 0;
                 
-                echo $perso->attaquer($domeDuTonnere[$cible]);
+                echo $perso->attaquer($domeDuTonnere[$cible], true);
                 
             }
 
         }
+        //-------------- duel end ----------------------------
 
-        //------------------------------------------
+        //------------- game engine start ---------------------------
+        $game = new GameEngine();
+        $game->addCombattant(new Humain("Loic")); 
+        $game->addCombattant(new Orc("Yannick"));
+        $game->addCombattant(new Elfe("Jonathan"));
+        $game->addCombattant(new Humain("Test1"));
+        $game->addCombattant(new Elfe("Test2"));
+        $game->addCombattant(new Orc("Test3"));
+        $game->addCombattant(new Orc("Test4"));
+        $game->addCombattant(new Elfe("Test5"));
+
+        $game->start();
+
+        var_dump($game->getJoueur());
+        //------------- game engine finish --------------------------
     ?>
 </body>
 </html>

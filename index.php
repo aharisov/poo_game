@@ -54,7 +54,7 @@
 
         $game->start();
 
-        var_dump($game->getJoueur());
+        //var_dump($game->getJoueur());
         //------------- game engine finish --------------------------
     ?>
 </body>

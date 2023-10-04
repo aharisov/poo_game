@@ -22,9 +22,7 @@ class GameEngine {
             $this->tourDeJeu();
         }
 
-        $dernierJoueur = current($this->combattants);
-
-        echo '<h3 style="color: green;">' . $dernierJoueur->__get("race") . ' ' . $dernierJoueur->__get("nom") . ' est gagné. Félicitations.</h3>';
+        $this->fin();
     }
 
     // method for getting random player's id
@@ -43,14 +41,20 @@ class GameEngine {
     // method for every game tour
     public function tourDeJeu() {
         
+        // every player attacks during one tour
         foreach($this->combattants as $combattant) {
+
+            // only alive player can attack
             if ($combattant->__get("pv") > 0) {
+                // get random victim
                 $cible = $this->getJoueur();
 
+                // the victim should not be the same player
                 if ($cible != $combattant) {
                     echo $combattant->attaquer($cible, false);
                 }
             } else {
+                // clean the battle field
                 echo $this->nettoyerMort();
             }
         }
@@ -77,10 +81,10 @@ class GameEngine {
 
     // method for finishing the game
     public function fin() {
+        // get the last player
+        $dernierJoueur = current($this->combattants);
 
-        // check if only one player left and finish the battle
-        if (count($this->combattants) == 1) {
-            return true;
-        }
+        // show the winner
+        echo '<h3 style="color: green;">' . $dernierJoueur->__get("race") . ' ' . $dernierJoueur->__get("nom") . ' est gagné. Félicitations.</h3>';
     }
 }

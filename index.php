@@ -21,36 +21,6 @@
         require("class/GameEngine.php");
         require("class/Duel.php");
 
-        //------------- duel start ---------------------------
-        
-        // array for stocking duelist
-        /*
-        $domeDuTonnere = [
-            new Orc("Loïc"), 
-            new Humain("Yanick")
-        ];
-
-        echo "<h2>Le duel commence</h2>";
-        */
-
-        // make attacks while all duelists are alive
-        /*
-        while ($domeDuTonnere[0]->__get("pv") > 0 && $domeDuTonnere[1]->__get("pv") > 0) {
-            
-            // change attacker every time
-            foreach($domeDuTonnere as $index => $perso) {
-                
-                $cible = $index == 0 ? 1 : 0;
-                
-                sleep(1);
-                echo $perso->attaquer($domeDuTonnere[$cible], true);
-                ob_flush();
-                flush();
-            }
-
-        }*/
-        //-------------- duel end ----------------------------
-
         //------------- game engine start ---------------------------
         /*
         echo "<h2>La bataille commence</h2>";
@@ -72,7 +42,7 @@
     ?>
 
     <main class="flex justify-center items-center ">
-        <div class="flex items-center flex-col h-1/2 w-1/2 mx-auto my-10 p-10 border-double border-4 rounded-lg border-indigo-600 overflow-y-scroll">
+        <div class="game-container <?php if (!$_GET) echo 'justify-center';?> border-double border-4 rounded-lg border-indigo-600">
             
             <?php if (!$_GET) {?>
                 
@@ -93,8 +63,20 @@
                             ];
 
                             echo '<h1 class="text-5xl mb-10 ">Le duel commence !</h1>';
+                            echo "<div class='battle-field'>";
+                            echo Personnage::showPersonnage($domeDuTonnere[0]);
+                            echo Personnage::showPersonnage($domeDuTonnere[1]);
                             
+                            echo "<div class='field-inner'>";
                             Duel::startDuel($domeDuTonnere);
+                            echo "</div>";
+
+                            echo "</div>";
+
+                            echo '<a href="?game=duel" class="border-2 rounded-lg absolute p-5 border-purple-600 bg-purple-600 hover:bg-purple-800 text-lg uppercase text-white" style="bottom: 3em">commencer un nouvel duel</a>';
+                            echo '<a href="http://localhost/poo_thegame/" class="return-home border-2 rounded-lg p-5 border-rose-600 hover:bg-rose-800 bg-rose-600 text-lg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                            <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
+                          </svg></a>';
 
                         } else {
 
@@ -104,20 +86,6 @@
                     }
             ?>
 
-            <div class="player">
-                <?php $test = Personnage::generatePersonnage(); 
-                    var_dump($test);
-                
-                    echo '<div class="name">' . $test->race . ' ' . $test->nom. '</div>';
-                    echo '<div class="pic"><img src="' . $test->picture . '" alt="">';
-                    echo '<div class="props">';
-                    echo '<p>Force - ' . $test->force . '</p>';
-                    echo '<p>PV - ' . $test->pv . '</p>';
-                    echo '<p>Endurance - ' . $test->endurance . '</p>';
-                ?>
-
-                
-            </div>
         </div>
     </main>
 </body>

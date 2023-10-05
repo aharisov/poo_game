@@ -6,8 +6,51 @@ main {
     font-family: fantasy;
 }
 
+.game-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 70%;
+    margin: 5em auto;
+    padding: 3em;
+    overflow-y: hidden;
+}
+
+.battle-field {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.battle-field .field-inner {
+    position: absolute;
+    left: 32%;
+    top: 150px;
+    width: 36%;
+    height: 400px;
+    overflow-y: scroll;
+    font-family: monospace;
+}
+.battle-field .player:nth-child(2) {
+    text-align: right;
+}
+.battle-field .player:nth-child(2) .pic {
+    display: flex;
+    justify-content: end;
+}
+.battle-field .player:nth-child(2) .props {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.battle-field .player:nth-child(2) .props p {
+    display: inline-flex;
+    width: 100%;
+}
+
 .player {
-    width: 48%;
+    width: 32%;
 }
 .player .name {
     font-size: 1.5em;
@@ -36,4 +79,15 @@ main {
 }
 .player .props p:last-child {
     background-color: rgb(50, 104, 220);
+}
+
+.return-home {
+    position: absolute;
+    right: 2em;
+    bottom: 3em;
+    color: #fff;
+}
+.return-home svg {
+    width: 35px;
+    height: 28px;
 }

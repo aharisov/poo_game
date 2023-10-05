@@ -31,6 +31,7 @@ abstract class Personnage {
         return $colors[array_rand($colors)];
     }
 
+    // generate new player
     public static function generatePersonnage() {
         $races = ["Orc", "Humain", "Elfe"];
         $nomsOrc = ["Azog", "Bolg", "Golfimbul", "Grishnákh", "Shagrat", "Gorbag", "Snaga", "Uglúk"];
@@ -57,6 +58,19 @@ abstract class Personnage {
         return new $getRace($getNom);
     }
 
+    public static function showPersonnage($jouyeur) {
+        $html = "<div class='player'>";
+        $html .= "<div class='name'>$jouyeur->race $jouyeur->nom</div>";
+        $html .= "<div class='pic'><img src='$jouyeur->picture' alt=''/></div>";
+        $html .= "<div class='props'>";
+        $html .= "<p>Force - $jouyeur->force</p>";
+        $html .= "<p>PV - $jouyeur->pv</p>";
+        $html .= "<p>Endurance - $jouyeur->endurance</p>";
+        $html .= "</div></div>";
+
+        return $html;
+    }
+
     public function attaquer($cible, $isDuel) {
         // transform difference between endurance and force to 0 if it's sub 0
         // calculate new value of pv
@@ -73,11 +87,11 @@ abstract class Personnage {
         if ($this->pv > 0) {
             
             // show message that one personage attacked another
-            $html .= "<h3 style='color: $this->color'>Un personnage $this->race $this->nom attaque $cible->race $cible->nom avec le force $this->force.</h3>";
+            $html .= "<p style='color: $this->color'><b>$this->race $this->nom</b> attaque <b>$cible->race $cible->nom</b>.</p>";
             
             if ($cible->__get("pv") > 0) {
                 // show number of left pv if victim is alive
-                $html .= "<h4>Il reste $cible->pv points de vie et $cible->endurance points d'endurance au $cible->race $cible->nom.</h4>";
+                $html .= "<p><b>$cible->race $cible->nom</b>: <b><i>-$cible->pv</i></b> de pv et <b><i>-$cible->endurance</i></b> d'endurance.</h4>";
             } else {
                 // show message that victim is dead for duel
                 if ($isDuel) {

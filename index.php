@@ -28,7 +28,7 @@
         echo "<h2>Le duel commence</h2>";
 
         // make attacks while all duelists are alive
-        while ($domeDuTonnere[0]->__get("pv") > 0 && $domeDuTonnere[1]->__get("pv") > 0) {
+        while ($domeDuTonnere[0]->pv > 0 && $domeDuTonnere[1]->pv > 0) {
             
             // change attacker every time
             foreach($domeDuTonnere as $index => $perso) {

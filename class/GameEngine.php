@@ -45,7 +45,7 @@ class GameEngine {
         foreach($this->combattants as $combattant) {
 
             // only alive player can attack
-            if ($combattant->__get("pv") > 0) {
+            if ($combattant->pv > 0) {
                 // get random victim
                 $cible = $this->getJoueur();
 
@@ -67,14 +67,14 @@ class GameEngine {
         foreach($this->combattants as $combattant) {
 
             // if players does not have pv
-            if ($combattant->__get("pv") <= 0) {
+            if ($combattant->pv <= 0) {
 
                 // find index of player in array and remive player from array
                 $key = array_search($combattant, $this->combattants);
                 unset($this->combattants[$key]);
 
                 // show who was killed
-                return '<h3 style="color: red;">' . $combattant->__get("race") . ' ' . $combattant->__get("nom") . ' quitte le champ de bataille</h3>';
+                return '<h3 style="color: red;">' . $combattant->race . ' ' . $combattant->nom . ' quitte le champ de bataille</h3>';
             }
         }
     }
@@ -85,6 +85,6 @@ class GameEngine {
         $dernierJoueur = current($this->combattants);
 
         // show the winner
-        echo '<h3 style="color: green;">' . $dernierJoueur->__get("race") . ' ' . $dernierJoueur->__get("nom") . ' est gagné. Félicitations.</h3>';
+        echo '<h3 style="color: green;">' . $dernierJoueur->race . ' ' . $dernierJoueur->nom . ' est gagné. Félicitations.</h3>';
     }
 }

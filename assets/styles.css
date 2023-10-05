@@ -1,0 +1,39 @@
+html, body, main {
+    height: 100%;
+}
+
+main {
+    font-family: fantasy;
+}
+
+.player {
+    width: 48%;
+}
+.player .name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.player .pic {
+    height: 250px;
+}
+.player .pic img {
+    height: 100%;
+}
+.player .props p {
+    max-width: 50%;
+    margin-bottom: 0.2em;
+    padding: 0.2em 0.8em;
+    line-height: 25px;
+    font-weight: bold;
+    color: #fff;
+}
+.player .props p:first-child {
+    background-color: brown;
+}
+.player .props p:nth-child(2) {
+    background-color: lightgreen;
+    color: #000;
+}
+.player .props p:last-child {
+    background-color: rgb(50, 104, 220);
+}

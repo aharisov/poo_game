@@ -6,6 +6,27 @@ main {
     font-family: fantasy;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    position: relative;
+    right: 5px;
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 .game-container {
     position: relative;
     display: flex;
@@ -17,20 +38,34 @@ main {
     padding: 3em;
     overflow-y: hidden;
 }
+.game-container-big {
+    height: 90%;
+}
 
-.battle-field {
+.battle-field,
+.battle-field-big {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
-.battle-field .field-inner {
+.battle-field .field-inner,
+.battle-field-big .field-inner {
     position: absolute;
-    left: 32%;
+    left: 30%;
     top: 150px;
-    width: 36%;
+    width: 40%;
     height: 400px;
+    padding: 2em;
+    border: 1px solid rgba(79, 70, 229,0.6);
+    border-radius: 7px;
     overflow-y: scroll;
     font-family: monospace;
+}
+.battle-field-big .field-inner {
+    top: 410px;
+    width: 55%;
+    left: 20%;
+    height: 320px;
 }
 .battle-field .player:nth-child(2) {
     text-align: right;
@@ -81,13 +116,52 @@ main {
     background-color: rgb(50, 104, 220);
 }
 
+.battle-field-big {
+    flex-wrap: wrap;
+}
+.battle-field-big .player {
+    width: 20%;
+    margin-bottom: 2.2em;
+}
+.battle-field-big .player .pic {
+    height: 135px;
+}
+.battle-field-big .player .name {
+    font-size: 1.2em;
+}
+.battle-field-big .player .props p {
+    max-width: 65%;
+    font-size: 13px;
+    line-height: 16px;
+}
+.battle-count-8 .player:nth-of-type(6), .battle-count-9 .player:nth-of-type(6), 
+.battle-count-10 .player:nth-of-type(6), .battle-count-9 .player:nth-of-type(7), 
+.battle-count-10 .player:nth-of-type(7), .battle-count-10 .player:nth-of-type(8)  {
+    position: absolute;
+    bottom: 2em;
+}
+.battle-count-10 .player:nth-of-type(7) {
+    left: 43%;
+}
+.battle-count-10 .player:nth-of-type(8),
+.battle-count-9 .player:nth-of-type(7) {
+    right: 0;
+}
+
 .return-home {
     position: absolute;
-    right: 2em;
-    bottom: 3em;
+    left: 2em;
+    top: 1.95em;
     color: #fff;
 }
-.return-home svg {
+.refresh-btn {
+    position: absolute;
+    top: 1.95em;
+    right: 2em;
+    color: #fff;
+}
+.return-home svg,
+.refresh-btn svg {
     width: 35px;
     height: 28px;
 }

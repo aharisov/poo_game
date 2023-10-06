@@ -65,9 +65,9 @@ abstract class Personnage {
         $html .= "<div class='name'>$jouyeur->race $jouyeur->nom</div>";
         $html .= "<div class='pic'><img src='$jouyeur->picture' alt=''/></div>";
         $html .= "<div class='props'>";
-        $html .= "<p class='force'>Force - $jouyeur->force<span></span></p>";
-        $html .= "<p class='pv'>PV - $jouyeur->pv<span></span></p>";
-        $html .= "<p class='endurance'>Endurance - $jouyeur->endurance<span></span></p>";
+        $html .= "<p class='force'>Force&nbsp; <b>$jouyeur->force</b><span></span></p>";
+        $html .= "<p class='pv'>PV&nbsp; <b>$jouyeur->pv</b><span></span></p>";
+        $html .= "<p class='endurance'>Endurance&nbsp; <b>$jouyeur->endurance</b><span></span></p>";
         $html .= "</div></div>";
 
         return $html;

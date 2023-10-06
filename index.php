@@ -53,14 +53,23 @@
 
                             echo "
                             <script>
+                                // first player
                                 let parent".spl_object_id($domeDuTonnere[0])." = document.getElementById('player-".spl_object_id($domeDuTonnere[0])."');
                                 let pv".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .pv span');
+                                let pvNum".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .pv b');
                                 let endurance".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .endurance span');
+                                let enduranceNum".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .endurance b');
                                 let force".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .force span');
+                                let forceNum".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .force b');
+                                
+                                // second player
                                 let parent".spl_object_id($domeDuTonnere[1])." = document.getElementById('player-".spl_object_id($domeDuTonnere[1])."');
                                 let pv".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .pv span');
+                                let pvNum".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .pv b');
                                 let endurance".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .endurance span');
+                                let enduranceNum".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .endurance b');
                                 let force".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .force span');
+                                let forceNum".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .force b');
                             </script>
                             ";
                             
@@ -91,8 +100,11 @@
                                     <script>
                                         let parent".spl_object_id($jouyeur)." = document.getElementById('player-".spl_object_id($jouyeur)."');
                                         let pv".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .pv span');
+                                        let pvNum".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .pv b');
                                         let endurance".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .endurance span');
+                                        let enduranceNum".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .endurance b');
                                         let force".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .force span');
+                                        let forceNum".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .force b');
                                     </script>
                                 ";
                             }

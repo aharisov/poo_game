@@ -75,11 +75,17 @@ class GameEngine {
                         $newWidthEndurance = 0;
                     }
 
+                    $pvNum = $cible->pv < 0 ? 0 : $cible->pv;
+
                     echo "
                         <script>
                             pv".spl_object_id($cible).".style.width = $newWidthPv / parent".spl_object_id($cible).".getAttribute('data-pv') + '%';
                             endurance".spl_object_id($cible).".style.width = $newWidthEndurance / parent".spl_object_id($cible).".getAttribute('data-endur') + '%';
                             force".spl_object_id($combattant).".style.width = $newWidthForce / parent".spl_object_id($combattant).".getAttribute('data-f') + '%';
+
+                            pvNum".spl_object_id($cible).".innerText = " . $pvNum . ";
+                            enduranceNum".spl_object_id($cible).".innerText = " . $cible->endurance . ";
+                            forceNum".spl_object_id($combattant).".innerText = " . $combattant->force . ";
                         </script>
                     ";
                 }

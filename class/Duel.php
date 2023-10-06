@@ -31,11 +31,15 @@ class Duel {
                 }
                 
                 // add to html and change width of boxes to show that numbers are decreasing
+                $pvNum = $jouyeurs[$jouyeurIndex]->pv < 0 ? 0 : $jouyeurs[$jouyeurIndex]->pv;
                 echo "
                 <script>
                     pv".spl_object_id($jouyeurs[$jouyeurIndex]).".style.width = $newWidthPv / parent".spl_object_id($jouyeurs[$jouyeurIndex]).".getAttribute('data-pv') + '%';
                     endurance".spl_object_id($jouyeurs[$jouyeurIndex]).".style.width = $newWidthEndurance / parent".spl_object_id($jouyeurs[$jouyeurIndex]).".getAttribute('data-endur') + '%';
                     force".spl_object_id($jouyeur).".style.width = $newWidthForce / parent".spl_object_id($jouyeur).".getAttribute('data-f') + '%';
+                    pvNum".spl_object_id($jouyeurs[$jouyeurIndex]).".innerText = " . $pvNum .";
+                    enduranceNum".spl_object_id($jouyeurs[$jouyeurIndex]).".innerText = " . $jouyeurs[$jouyeurIndex]->endurance .";
+                    forceNum".spl_object_id($jouyeurs[$jouyeurIndex]).".innerText = " . $jouyeurs[$jouyeurIndex]->force .";
                 </script>";
                 ob_flush();
                 flush();

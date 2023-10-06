@@ -59,23 +59,21 @@ class GameEngine {
 
                 $newWidthForce = $combattant->force * 100;
 
-                if ($cible->pv > 0) {
-                    $newWidthPv = $cible->pv * 100;
-                    $newWidthEndurance = $cible->endurance * 100;
-                } else {
-                    $newWidthPv = 0;
-                    $newWidthEndurance = 0;
-                }
-
-                if ($cible->endurance > 0) {
-                    $newWidthEndurance = $cible->endurance * 100;
-                } else {
-                    $newWidthEndurance = 0;
-                }
-
                 // the victim should not be the same player
                 if ($cible != $combattant && $cible->pv > 0) {
                     echo $combattant->attaquer($cible, false);
+
+                    if ($cible->pv > 0) {
+                        $newWidthPv = $cible->pv * 100;
+                    } else {
+                        $newWidthPv = 0;
+                    }
+    
+                    if ($cible->endurance > 0) {
+                        $newWidthEndurance = $cible->endurance * 100;
+                    } else {
+                        $newWidthEndurance = 0;
+                    }
 
                     echo "
                         <script>

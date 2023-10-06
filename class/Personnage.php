@@ -87,6 +87,15 @@ abstract class Personnage {
         
         // set new value of pv
         $cible->pv = $cible->pv - $newPvValue;
+
+        // find difference between force et endurance 
+        $diff = $this->force - $cible->endurance;
+        
+        // if diff < 0 make it positive
+        if ($diff < 0) {
+            $diff = -1 * $diff;
+        }
+
         $html = "";
 
         // only alive personage can attack
@@ -97,7 +106,7 @@ abstract class Personnage {
             
             if ($cible->pv > 0) {
                 // show number of lost pv and endurance
-                $html .= "<p><b>$cible->race $cible->nom</b>: <b><i>-" . ($this->force - $cible->endurance) . "</i></b> de pv et <b><i>-$cibleMinusEndurance</i></b> d'endurance.</h4>";
+                $html .= "<p><b>$cible->race $cible->nom</b>: <b><i>-" . ($diff) . "</i></b> de pv et <b><i>-$cibleMinusEndurance</i></b> d'endurance.</h4>";
             } else {
                 // show message that victim is dead for duel
                 if ($isDuel) {

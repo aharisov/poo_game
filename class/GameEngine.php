@@ -19,7 +19,7 @@ class GameEngine {
     // method for starting game
     public function start() {
         while(count($this->combattants) > 1) {
-            sleep(1);
+            sleep(0.5);
             $this->tourDeJeu();
         }
 
@@ -53,13 +53,37 @@ class GameEngine {
 
             sleep(1);
             // only alive player can attack
-            if ($combattant->__get("pv") > 0) {
+            if ($combattant->pv > 0) {
                 // get random victim
                 $cible = $this->getJoueur();
+
+                $newWidthForce = $combattant->force * 100;
+
+                if ($cible->pv > 0) {
+                    $newWidthPv = $cible->pv * 100;
+                    $newWidthEndurance = $cible->endurance * 100;
+                } else {
+                    $newWidthPv = 0;
+                    $newWidthEndurance = 0;
+                }
+
+                if ($cible->endurance > 0) {
+                    $newWidthEndurance = $cible->endurance * 100;
+                } else {
+                    $newWidthEndurance = 0;
+                }
 
                 // the victim should not be the same player
                 if ($cible != $combattant && $cible->pv > 0) {
                     echo $combattant->attaquer($cible, false);
+
+                    echo "
+                        <script>
+                            pv".spl_object_id($cible).".style.width = $newWidthPv / parent".spl_object_id($cible).".getAttribute('data-pv') + '%';
+                            endurance".spl_object_id($cible).".style.width = $newWidthEndurance / parent".spl_object_id($cible).".getAttribute('data-endur') + '%';
+                            force".spl_object_id($combattant).".style.width = $newWidthForce / parent".spl_object_id($combattant).".getAttribute('data-f') + '%';
+                        </script>
+                    ";
                 }
                 ob_flush();
                 flush();
@@ -109,5 +133,6 @@ class GameEngine {
 
         // show the winner
         echo '<h3 style="color: green;">' . $dernierJoueur->race . ' ' . $dernierJoueur->nom . ' est gagné. Félicitations.</h3>';
+        echo "<script>parent".spl_object_id($dernierJoueur).".classList.add('winner')</script>";
     }
 }

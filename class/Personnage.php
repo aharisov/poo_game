@@ -58,14 +58,16 @@ abstract class Personnage {
         return new $getRace($getNom);
     }
 
+    // show player in the page
     public static function showPersonnage($jouyeur) {
-        $html = "<div class='player'>";
+        
+        $html = "<div id='player-" . spl_object_id($jouyeur) . "' class='player' data-pv='$jouyeur->pv' data-endur='$jouyeur->endurance' data-f='$jouyeur->force'>";
         $html .= "<div class='name'>$jouyeur->race $jouyeur->nom</div>";
         $html .= "<div class='pic'><img src='$jouyeur->picture' alt=''/></div>";
         $html .= "<div class='props'>";
-        $html .= "<p>Force - $jouyeur->force</p>";
-        $html .= "<p>PV - $jouyeur->pv</p>";
-        $html .= "<p>Endurance - $jouyeur->endurance</p>";
+        $html .= "<p class='force'>Force - $jouyeur->force<span></span></p>";
+        $html .= "<p class='pv'>PV - $jouyeur->pv<span></span></p>";
+        $html .= "<p class='endurance'>Endurance - $jouyeur->endurance<span></span></p>";
         $html .= "</div></div>";
 
         return $html;
@@ -76,8 +78,12 @@ abstract class Personnage {
         // calculate new value of pv
         $newPvValue = ($this->force - $cible->endurance) < 0 ? 0 : $this->force - $cible->endurance;
         
+        // reduce force value of attacker
+        $this->force -= rand(1, 3);
+        
         // reduce endurance value
-        $cible->endurance -= rand(5, 10);
+        $cibleMinusEndurance = rand(5, 10);
+        $cible->endurance -= $cibleMinusEndurance;
         
         // set new value of pv
         $cible->pv = $cible->pv - $newPvValue;
@@ -89,15 +95,17 @@ abstract class Personnage {
             // show message that one personage attacked another
             $html .= "<p style='color: $this->color'><b>$this->race $this->nom</b> attaque <b>$cible->race $cible->nom</b>.</p>";
             
-            if ($cible->__get("pv") > 0) {
-                // show number of left pv if victim is alive
-                $html .= "<p><b>$cible->race $cible->nom</b>: <b><i>-$cible->pv</i></b> de pv et <b><i>-$cible->endurance</i></b> d'endurance.</h4>";
+            if ($cible->pv > 0) {
+                // show number of lost pv and endurance
+                $html .= "<p><b>$cible->race $cible->nom</b>: <b><i>-" . ($this->force - $cible->endurance) . "</i></b> de pv et <b><i>-$cibleMinusEndurance</i></b> d'endurance.</h4>";
             } else {
                 // show message that victim is dead for duel
                 if ($isDuel) {
                     $html .= "<h3 style='color: red;'>$cible->race $cible->nom est mort. Fin du duel.</h3>";
+                    $html .= "<script>parent".spl_object_id($cible).".classList.add('dead')</script>";
                 } else {
                     $html .= "<h3 style='color: red;'>$cible->race $cible->nom est mort.</h3>";
+                    $html .= "<script>parent".spl_object_id($cible).".classList.add('dead')</script>";
                 }
             }
             

@@ -50,6 +50,19 @@
                             // show players on the filed
                             echo Personnage::showPersonnage($domeDuTonnere[0]);
                             echo Personnage::showPersonnage($domeDuTonnere[1]);
+
+                            echo "
+                            <script>
+                                let parent".spl_object_id($domeDuTonnere[0])." = document.getElementById('player-".spl_object_id($domeDuTonnere[0])."');
+                                let pv".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .pv span');
+                                let endurance".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .endurance span');
+                                let force".spl_object_id($domeDuTonnere[0])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[0]).".getAttribute(`id`) + ' .force span');
+                                let parent".spl_object_id($domeDuTonnere[1])." = document.getElementById('player-".spl_object_id($domeDuTonnere[1])."');
+                                let pv".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .pv span');
+                                let endurance".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .endurance span');
+                                let force".spl_object_id($domeDuTonnere[1])." = document.querySelector('#' + parent".spl_object_id($domeDuTonnere[1]).".getAttribute(`id`) + ' .force span');
+                            </script>
+                            ";
                             
                             echo "<div class='field-inner'>";
                             // start duel
@@ -73,6 +86,15 @@
                             // show all players on the field
                             foreach($game->getToutesJoueurs() as $jouyeur) {
                                 echo Personnage::showPersonnage($jouyeur);
+
+                                echo "
+                                    <script>
+                                        let parent".spl_object_id($jouyeur)." = document.getElementById('player-".spl_object_id($jouyeur)."');
+                                        let pv".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .pv span');
+                                        let endurance".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .endurance span');
+                                        let force".spl_object_id($jouyeur)." = document.querySelector('#' + parent".spl_object_id($jouyeur).".getAttribute(`id`) + ' .force span');
+                                    </script>
+                                ";
                             }
                             
                             echo "<div class='field-inner'>";
@@ -87,5 +109,6 @@
 
         </div>
     </main>
+
 </body>
 </html>

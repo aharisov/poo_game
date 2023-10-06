@@ -74,9 +74,17 @@ abstract class Personnage {
     }
 
     public function attaquer($cible, $isDuel) {
-        // transform difference between endurance and force to 0 if it's sub 0
-        // calculate new value of pv
-        $newPvValue = ($this->force - $cible->endurance) < 0 ? 0 : $this->force - $cible->endurance;
+        // calculate damage
+        $dega = $this->force - $cible->endurance;
+        // set damage to 0 if it's < 0
+        $dega = ($dega < 0) ? 0 : $dega;
+
+        // for showing damage in html
+        if ($dega > 0) {
+            $showDega = "-$dega";
+        } else {
+            $showDega = 0;
+        }
         
         // reduce force value of attacker
         $this->force -= rand(1, 3);
@@ -86,15 +94,7 @@ abstract class Personnage {
         $cible->endurance -= $cibleMinusEndurance;
         
         // set new value of pv
-        $cible->pv = $cible->pv - $newPvValue;
-
-        // find difference between force et endurance 
-        $diff = $this->force - $cible->endurance;
-        
-        // if diff < 0 make it positive
-        if ($diff < 0) {
-            $diff = -1 * $diff;
-        }
+        $cible->pv = $cible->pv - $dega;
 
         $html = "";
 
@@ -106,7 +106,7 @@ abstract class Personnage {
             
             if ($cible->pv > 0) {
                 // show number of lost pv and endurance
-                $html .= "<p><b>$cible->race $cible->nom</b>: <b><i>-" . ($diff) . "</i></b> de pv et <b><i>-$cibleMinusEndurance</i></b> d'endurance.</h4>";
+                $html .= "<p><b>$cible->race $cible->nom</b>: <b style='color: darkred'><i>" . ($showDega) . "</i></b> de pv et <b style='color: darkred'><i>-$cibleMinusEndurance</i></b> d'endurance.</h4>";
             } else {
                 // show message that victim is dead for duel
                 if ($isDuel) {

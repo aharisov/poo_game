@@ -1,29 +1,35 @@
-# README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+# Educational project The Game
+## Has two modes - duel and battle
 
-### What is this repository for? ###
+This project was designed for consolidating knowledge in PHP. Thera are two branches in repo: 
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+    1. Branch "main" is the first version of The Game implementing all necessary features from technical task.
+    2. Branch "version2" is more complex realisation of The Game with visual interface.
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
 
-### Contribution guidelines ###
+## Features
 
-* Writing tests
-* Code review
-* Other guidelines
+- visual interface;
+- two game modes - duel and battle;
+- 3 races - Elfe, Orc and Humain;
+- random generating of players with random specifications (power, health, defence);
+- random generating of attackers and victims;
+- random generating number of players in battle mode;
+- showing the number of remaining specifications in real-time.
 
-### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+## Tech Stack
+
+**Client:** HTML5, CSS3, JavaScript 
+
+**Server:** PHP
+
+
+## Screenshots
+![App Screenshot](https://snipboard.io/OVP3Cj.jpg)
+![App Screenshot](https://snipboard.io/JDowc7.jpg)
+![App Screenshot](https://snipboard.io/Dvj0cM.jpg)
+![App Screenshot](https://snipboard.io/aJnNOG.jpg)
+![App Screenshot](https://snipboard.io/cENBZP.jpg)

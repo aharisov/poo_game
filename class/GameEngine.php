@@ -3,6 +3,7 @@
 class GameEngine {
     // array of players
     public $combattants = [];
+    public $sameRace = [];
 
     // function for generating random number
     private function randNum($min, $max) {
@@ -18,9 +19,24 @@ class GameEngine {
 
     // method for starting game
     public function start() {
+
         while(count($this->combattants) > 1) {
+            
             sleep(0.5);
+
+            // make tour
             $this->tourDeJeu();
+
+            // clean the battle field
+            echo $this->nettoyerMort();
+
+            // check if there are players of others races
+            $count = $this->countRaces();
+            
+            // break cycle if there are not
+            if ($count == 0) {
+                break;
+            }
         }
 
         $this->fin();
@@ -35,72 +51,93 @@ class GameEngine {
 
     // method for getting random player
     public function getJoueur() {
-        // get random player and return this object
+        
         return $this->combattants[$this->getId()];
     }
 
     // method for getting all players
     public function getToutesJoueurs() {
-        // get random player and return this object
+        
         return $this->combattants;
     }
 
     // method for every game tour
     public function tourDeJeu() {
+        sleep(1);
+        // get random attacker
+        $combattant = $this->getJoueur();
         
-        // every player attacks during one tour
-        foreach($this->combattants as $combattant) {
+        // only alive player can attack
+        if ($combattant->pv > 0) {
 
-            sleep(1);
-            // only alive player can attack
-            if ($combattant->pv > 0) {
-                // get random victim
-                $cible = $this->getJoueur();
+            // count number for calculating percentage for html element force
+            $newWidthForce = $combattant->force * 100;
 
-                $newWidthForce = $combattant->force * 100;
+            // get random victim
+            $cible = $this->getJoueur();
 
-                // the victim should not be the same player
-                if ($cible != $combattant && $cible->pv > 0) {
-                    echo $combattant->attaquer($cible, false);
+            // the victim should not be the same player 
+            // and should be of the other race
+            if ($cible != $combattant && $combattant->race != $cible->race && $cible->pv > 0) { 
+                echo $combattant->attaquer($cible, false);
 
-                    if ($cible->pv > 0) {
-                        $newWidthPv = $cible->pv * 100;
-                    } else {
-                        $newWidthPv = 0;
-                    }
-    
-                    if ($cible->endurance > 0) {
-                        $newWidthEndurance = $cible->endurance * 100;
-                    } else {
-                        $newWidthEndurance = 0;
-                    }
-
-                    $pvNum = $cible->pv < 0 ? 0 : $cible->pv;
-
-                    echo "
-                        <script>
-                            pv".spl_object_id($cible).".style.width = $newWidthPv / parent".spl_object_id($cible).".getAttribute('data-pv') + '%';
-                            endurance".spl_object_id($cible).".style.width = $newWidthEndurance / parent".spl_object_id($cible).".getAttribute('data-endur') + '%';
-                            force".spl_object_id($combattant).".style.width = $newWidthForce / parent".spl_object_id($combattant).".getAttribute('data-f') + '%';
-
-                            pvNum".spl_object_id($cible).".innerText = " . $pvNum . ";
-                            enduranceNum".spl_object_id($cible).".innerText = " . $cible->endurance . ";
-                            forceNum".spl_object_id($combattant).".innerText = " . $combattant->force . ";
-                        </script>
-                    ";
+                // count number for calculating percentage for html element pv
+                if ($cible->pv > 0) {
+                    $newWidthPv = $cible->pv * 100;
+                } else {
+                    $newWidthPv = 0;
                 }
-                ob_flush();
-                flush();
 
-            } else {
-                // clean the battle field
-                echo $this->nettoyerMort();
-            }
+                // count number for calculating percentage for html element endurance
+                if ($cible->endurance > 0) {
+                    $newWidthEndurance = $cible->endurance * 100;
+                } else {
+                    $newWidthEndurance = 0;
+                }
+
+                // pv should not be sub zero
+                $pvNum = $cible->pv < 0 ? 0 : $cible->pv;
+
+                // change elements width and numbers in it dynamically
+                echo "
+                    <script>
+                        pv".spl_object_id($cible).".style.width = $newWidthPv / parent".spl_object_id($cible).".getAttribute('data-pv') + '%';
+                        endurance".spl_object_id($cible).".style.width = $newWidthEndurance / parent".spl_object_id($cible).".getAttribute('data-endur') + '%';
+                        force".spl_object_id($combattant).".style.width = $newWidthForce / parent".spl_object_id($combattant).".getAttribute('data-f') + '%';
+
+                        pvNum".spl_object_id($cible).".innerText = " . $pvNum . ";
+                        enduranceNum".spl_object_id($cible).".innerText = " . $cible->endurance . ";
+                        forceNum".spl_object_id($combattant).".innerText = " . $combattant->force . ";
+                    </script>
+                ";
+            } 
+            ob_flush();
+            flush();
+        }
+    }
+
+    // count number of players of each race
+    // for finishing game if there left only the players of the same race
+    private function countRaces() {
+        $races = ['Orc' => 0, 'Elfe' => 0, 'Humain' => 0];
+
+        foreach($this->combattants as $joueur) {    
+            $races[$joueur->race]++;
+        }
+
+        if (
+            ($races['Orc'] == 0 && $races['Elfe'] == 0)
+            || ($races['Elfe'] == 0 && $races['Humain'] == 0)
+            || ($races['Orc'] == 0 && $races['Humain'] == 0)
+        ) {
+            return 0;
+        } else {
+            return 1;
         }
     }
 
     // method for deleting dead players from the game
-    public function nettoyerMort() {
+    private function nettoyerMort() {
 
         // search for dead players in players array
         foreach($this->combattants as $combattant) {
@@ -118,6 +155,7 @@ class GameEngine {
         }
     }
 
+    // show in html buttons return home and refresh game
     public static function returnRefreshButtons($url) {
         echo '<a href="'. $url .'" class="refresh-btn border-2 rounded-lg absolute p-5 border-purple-600 bg-purple-600 hover:bg-purple-800 text-lg uppercase text-white">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -131,12 +169,14 @@ class GameEngine {
     }
 
     // method for finishing the game
-    public function fin() {
-        // get the last player
-        $dernierJoueur = current($this->combattants);
+    private function fin() {
 
-        // show the winner
-        echo '<h3 style="color: green;">' . $dernierJoueur->race . ' ' . $dernierJoueur->nom . ' est gagné. Félicitations.</h3>';
-        echo "<script>parent".spl_object_id($dernierJoueur).".classList.add('winner')</script>";
+        // show one winner
+        // or all winners of the sam race
+        foreach($this->combattants as $dernierJoueur) {
+            // show the winner
+            echo '<h3 style="color: green;">' . $dernierJoueur->race . ' ' . $dernierJoueur->nom . ' est gagné. Félicitations.</h3>';
+            echo "<script>parent".spl_object_id($dernierJoueur).".classList.add('winner')</script>";
+        }
     }
 }

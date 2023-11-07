@@ -1,5 +1,35 @@
+# Le projet pédagogique : "Le Jeu"
+## Il y a deux modes - un duel et une bataille
 
-# Educational project The Game
+Ce projet a été conçu pour consolider les connaissances en PHP. Il y a deux branches en repo :
+
+    1. La branche "main" est la première version du "Le Jeu" implémentant toutes les fonctionnalités nécessaires à la tâche technique.
+    2. La branche "version2" est une réalisation plus complexe du "Le Jeu" avec une interface visuelle.
+
+## Les caractéristiques
+
+- l'interface visuelle ;
+- deux modes de jeu - un duel et une bataille ;
+- 3 races - Elfe, Orc et Humain ;
+- génération aléatoire de joueurs avec des spécifications aléatoires (puissance, santé, défense) ;
+- génération aléatoire d'attaquants et de cibles ;
+- nombre aléatoire de joueurs en mode bataille ;
+- montrant le nombre de spécifications restantes en temps réel.
+
+## Utilisation
+
+Afin d'exécuter ce projet localement il faut installer un serveur avec un support de PHP et ouvrir la page principale.
+
+## La Stack Technique
+
+**Client :** HTML5, CSS3, JavaScript
+
+**Serveur :** PHP
+
+
+### --------------------- English version ---------------------
+
+# Educational project: The Game
 ## Has two modes - duel and battle
 
 This project was designed for consolidating knowledge in PHP. Thera are two branches in repo: 
@@ -19,6 +49,9 @@ This project was designed for consolidating knowledge in PHP. Thera are two bran
 - random generating number of players in battle mode;
 - showing the number of remaining specifications in real-time.
 
+## How to use
+
+In order to execute this project locally it is necessary to install a server with PHP support and open the main page.
 
 ## Tech Stack
 

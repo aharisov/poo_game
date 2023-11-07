@@ -23,6 +23,7 @@ Afin d'exécuter ce projet localement il faut installer un serveur avec un suppo
 ## La Stack Technique
 
 **Client :** HTML5, CSS3, JavaScript
+
 **Serveur :** PHP
 
 ## Screenshots
@@ -62,4 +63,5 @@ In order to execute this project locally it is necessary to install a server wit
 ## Tech Stack
 
 **Client:** HTML5, CSS3, JavaScript 
+
 **Server:** PHP

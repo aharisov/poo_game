@@ -23,8 +23,14 @@ Afin d'exécuter ce projet localement il faut installer un serveur avec un suppo
 ## La Stack Technique
 
 **Client :** HTML5, CSS3, JavaScript
-
 **Serveur :** PHP
+
+## Screenshots
+![App Screenshot](https://snipboard.io/OVP3Cj.jpg)
+![App Screenshot](https://snipboard.io/JDowc7.jpg)
+![App Screenshot](https://snipboard.io/Dvj0cM.jpg)
+![App Screenshot](https://snipboard.io/aJnNOG.jpg)
+![App Screenshot](https://snipboard.io/cENBZP.jpg)
 
 
 ### --------------------- English version ---------------------
@@ -56,13 +62,4 @@ In order to execute this project locally it is necessary to install a server wit
 ## Tech Stack
 
 **Client:** HTML5, CSS3, JavaScript 
-
 **Server:** PHP
-
-
-## Screenshots
-![App Screenshot](https://snipboard.io/OVP3Cj.jpg)
-![App Screenshot](https://snipboard.io/JDowc7.jpg)
-![App Screenshot](https://snipboard.io/Dvj0cM.jpg)
-![App Screenshot](https://snipboard.io/aJnNOG.jpg)
-![App Screenshot](https://snipboard.io/cENBZP.jpg)
